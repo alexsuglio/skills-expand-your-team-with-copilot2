@@ -86,6 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function initializeSharedActivity() {
+    const sharedActivityName = new URLSearchParams(window.location.search).get(
+      "activity"
+    );
+
+    if (!sharedActivityName) {
+      return;
+    }
+
+    searchQuery = sharedActivityName;
+    searchInput.value = sharedActivityName;
+
+    if (Object.keys(allActivities).length > 0) {
+      displayFilteredActivities();
+    }
+  }
+
   // Function to set day filter
   function setDayFilter(day) {
     currentDay = day;
@@ -553,9 +570,48 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    const difficultyHtml = details.difficulty
-      ? `<p><strong>Difficulty:</strong> ${details.difficulty}</p>`
-      : "";
+    const shareUrl = new URL(window.location.href);
+    shareUrl.searchParams.set("activity", name);
+    const activityShareUrl = shareUrl.toString();
+    const shareMessage = `Explore the "${name}" activity at Mergington High School.`;
+    const shareButtons = `
+      <div class="share-actions" aria-label="Share ${name}">
+        <span class="share-label">Share:</span>
+        <a
+          class="share-button share-facebook"
+          href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+            activityShareUrl
+          )}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share ${name} on Facebook"
+        >
+          Facebook
+        </a>
+        <a
+          class="share-button share-x"
+          href="https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            shareMessage
+          )}&url=${encodeURIComponent(activityShareUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share ${name} on X"
+        >
+          X
+        </a>
+        <a
+          class="share-button share-whatsapp"
+          href="https://wa.me/?text=${encodeURIComponent(
+            `${shareMessage} ${activityShareUrl}`
+          )}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share ${name} on WhatsApp"
+        >
+          WhatsApp
+        </a>
+      </div>
+    `;
 
     activityCard.innerHTML = `
       ${tagHtml}
@@ -608,6 +664,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `
         }
       </div>
+      ${shareButtons}
     `;
 
     // Add click handlers for delete buttons
@@ -916,5 +973,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize app
   checkAuthentication();
   initializeFilters();
+  initializeSharedActivity();
   fetchActivities();
 });

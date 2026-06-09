@@ -205,6 +205,50 @@ section h3 {
   justify-content: center;
 }
 
+.share-actions {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.share-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.share-button {
+  text-decoration: none;
+  color: var(--primary-text);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
+.share-facebook {
+  background-color: #1877f2;
+  color: #ffffff;
+}
+
+.share-x {
+  background-color: #111827;
+  color: #ffffff;
+}
+
+.share-whatsapp {
+  background-color: #1f7a3d;
+  color: #ffffff;
+}
+
+.share-button:hover {
+  opacity: 0.9;
+}
+
 /* Activity Tag */
 .activity-tag {
   position: absolute;
