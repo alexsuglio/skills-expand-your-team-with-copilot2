@@ -519,9 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    const activityShareUrl = `${window.location.origin}${
-      window.location.pathname
-    }?activity=${encodeURIComponent(name)}`;
+    const activityShareUrl = `${window.location.origin}${window.location.pathname}`;
     const shareMessage = `Join me in checking out "${name}" at Mergington High School!`;
     const shareButtons = `
       <div class="share-actions" aria-label="Share ${name}">

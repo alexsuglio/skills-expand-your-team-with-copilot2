@@ -217,14 +217,17 @@ section h3 {
 
 .share-facebook {
   background-color: #1877f2;
+  color: #ffffff;
 }
 
 .share-x {
   background-color: #111827;
+  color: #ffffff;
 }
 
 .share-whatsapp {
-  background-color: #25d366;
+  background-color: #1f7a3d;
+  color: #ffffff;
 }
 
 .share-button:hover {
