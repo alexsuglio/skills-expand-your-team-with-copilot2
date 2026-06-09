@@ -40,9 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let searchQuery = "";
   let currentDay = "";
   let currentTimeRange = "";
-  const sharedActivityName = new URLSearchParams(window.location.search).get(
-    "activity"
-  );
 
   // Authentication state
   let currentUser = null;
@@ -70,12 +67,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initializeSharedActivity() {
+    const sharedActivityName = new URLSearchParams(window.location.search).get(
+      "activity"
+    );
+
     if (!sharedActivityName) {
       return;
     }
 
     searchQuery = sharedActivityName;
     searchInput.value = sharedActivityName;
+
+    if (Object.keys(allActivities).length > 0) {
+      displayFilteredActivities();
+    }
   }
 
   // Function to set day filter
@@ -531,9 +536,9 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    const activityShareUrl = `${window.location.origin}${
-      window.location.pathname
-    }?activity=${encodeURIComponent(name)}`;
+    const shareUrl = new URL(window.location.href);
+    shareUrl.searchParams.set("activity", name);
+    const activityShareUrl = shareUrl.toString();
     const shareMessage = `Explore the "${name}" activity at Mergington High School.`;
     const shareButtons = `
       <div class="share-actions" aria-label="Share ${name}">
