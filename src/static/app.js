@@ -427,7 +427,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const activityDifficulty = (details.difficulty || "").toLowerCase();
+      const activityDifficulty = details.difficulty
+        ? details.difficulty.toLowerCase()
+        : "";
 
       // Apply difficulty filter
       if (currentDifficultyFilter === "all") {
