@@ -32,6 +32,21 @@
   --info-light: #d1ecf1;
 }
 
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --background: #121212;
+  --surface: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #9e9e9e;
+  --border: #333333;
+  --border-light: #2a2a2a;
+  --border-focus: #444444;
+  --success-light: #1b3a1c;
+  --warning-light: #3a2a00;
+  --error-light: #3a1010;
+  --info-light: #0a2025;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -582,6 +597,7 @@ footer {
 }
 
 .category-filters,
+.difficulty-filters,
 .day-filters,
 .time-filters {
   display: flex;
@@ -590,6 +606,7 @@ footer {
 }
 
 .category-filter,
+.difficulty-filter,
 .day-filter,
 .time-filter {
   background-color: var(--background);
@@ -603,6 +620,7 @@ footer {
 }
 
 .category-filter.active,
+.difficulty-filter.active,
 .day-filter.active,
 .time-filter.active {
   background-color: var(--primary);
@@ -611,6 +629,7 @@ footer {
 }
 
 .category-filter:hover,
+.difficulty-filter:hover,
 .day-filter:hover,
 .time-filter:hover {
   background-color: var(--primary-light);
@@ -666,6 +685,7 @@ footer {
 #user-status {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 #user-info {
@@ -706,5 +726,21 @@ footer {
 }
 
 #logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Dark mode toggle button */
+#dark-mode-toggle {
+  padding: 3px 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+
+#dark-mode-toggle:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
