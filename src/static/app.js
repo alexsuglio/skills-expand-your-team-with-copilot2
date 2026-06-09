@@ -519,6 +519,49 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    const activityShareUrl = `${window.location.origin}${
+      window.location.pathname
+    }?activity=${encodeURIComponent(name)}`;
+    const shareMessage = `Join me in checking out "${name}" at Mergington High School!`;
+    const shareButtons = `
+      <div class="share-actions" aria-label="Share ${name}">
+        <span class="share-label">Share:</span>
+        <a
+          class="share-button share-facebook"
+          href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+            activityShareUrl
+          )}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share ${name} on Facebook"
+        >
+          Facebook
+        </a>
+        <a
+          class="share-button share-x"
+          href="https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            shareMessage
+          )}&url=${encodeURIComponent(activityShareUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share ${name} on X"
+        >
+          X
+        </a>
+        <a
+          class="share-button share-whatsapp"
+          href="https://wa.me/?text=${encodeURIComponent(
+            `${shareMessage} ${activityShareUrl}`
+          )}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share ${name} on WhatsApp"
+        >
+          WhatsApp
+        </a>
+      </div>
+    `;
+
     activityCard.innerHTML = `
       ${tagHtml}
       <h4>${name}</h4>
@@ -569,6 +612,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `
         }
       </div>
+      ${shareButtons}
     `;
 
     // Add click handlers for delete buttons
